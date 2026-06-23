@@ -1,7 +1,7 @@
 package com.example.jira.unit;
 
 import com.example.jira.dto.ApiResponse;
-import com.example.jira.dto.UserRequest;
+import com.example.jira.dto.RegisterUserRequest;
 import com.example.jira.dto.UserResponse;
 import com.example.jira.model.UserEntity;
 import com.example.jira.model.UserRole;
@@ -66,7 +66,7 @@ public class UserServiceUnitTest {
     @Test
     public void createUserTest() {
         String id = UUID.randomUUID().toString();
-        UserRequest userRequest = UserRequest.builder()
+        RegisterUserRequest registerUserRequest = RegisterUserRequest.builder()
                 .username("john")
                 .email("abc@gmail.com")
                 .role(String.valueOf(UserRole.QA)).build();
@@ -78,7 +78,7 @@ public class UserServiceUnitTest {
         given(userRepository.save(any(UserEntity.class))).willReturn(userEntity);
 
         // when
-        ApiResponse response = userService.createAndSaveUser(userRequest);
+        ApiResponse response = userService.createAndSaveUser(registerUserRequest);
 
         // then
         Assertions.assertNotNull(response.getId());

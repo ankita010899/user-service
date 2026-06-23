@@ -16,6 +16,7 @@ public class UserEntity {
     @Id
     private String id;
     private String username;
+    private String password;
     private String email;
     @Enumerated(EnumType.STRING)
     private UserRole role;

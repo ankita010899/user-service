@@ -1,7 +1,8 @@
 package com.example.jira.controller;
 
 import com.example.jira.dto.ApiResponse;
-import com.example.jira.dto.UserRequest;
+import com.example.jira.dto.LoginUserRequest;
+import com.example.jira.dto.RegisterUserRequest;
 import com.example.jira.dto.UserResponse;
 import com.example.jira.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +26,20 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResponse createUser(
-            @RequestBody UserRequest userRequest
+    public ApiResponse registerUser(
+            @RequestBody RegisterUserRequest registerUserRequest
     ){
-        return userService.createAndSaveUser(userRequest);
+        return userService.createAndSaveUser(registerUserRequest);
+    }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ApiResponse loginUser(
+            @RequestBody LoginUserRequest loginUserRequest
+    ){
+        return userService.authenticateAndLogin(loginUserRequest.username, loginUserRequest.password);
     }
 
     @DeleteMapping("/{id}")

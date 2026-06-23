@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   user-db:
     image: postgres:15
@@ -29,3 +28,7 @@ services:
       # Basic cluster settings
       KAFKA_LOG_DIRS: '/var/lib/kafka/data'
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk' # A unique identifier for your local cluster
+
+      # meant for dev environments, not for production
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0

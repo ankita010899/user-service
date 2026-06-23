@@ -30,7 +30,6 @@ public class KafkaConfig {
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
-        // This creates the exact bean Parameter 1 of your UserService constructor is looking for!
         return new KafkaTemplate<>(producerFactory());
     }
 }
